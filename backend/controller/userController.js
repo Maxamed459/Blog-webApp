@@ -23,9 +23,11 @@ export const registerUser = async (req, res) => {
 
     await userInfo.save();
 
+    userInfo.password = undefined;
+
     res.status(201).send(userInfo);
   } catch (error) {
-    res.send("Something went wrong...");
+    res.send("Something went wrong..." + error.message);
     console.log("Error At ", error);
   }
 };
