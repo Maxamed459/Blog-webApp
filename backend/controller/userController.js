@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+
 export const registerUser = async (req, res) => {
   try {
     // success
@@ -29,5 +30,13 @@ export const registerUser = async (req, res) => {
   } catch (error) {
     res.send("Something went wrong..." + error.message);
     console.log("Error At ", error);
+  }
+};
+
+export const loginUser = async (req, res) => {
+  try {
+  } catch (error) {
+    console.log("Error at loginUser", error);
+    res.status(400).send(error.message);
   }
 };

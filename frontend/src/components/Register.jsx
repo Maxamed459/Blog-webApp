@@ -38,8 +38,8 @@ const Register = () => {
     setloading(true);
 
     try {
-      const { data } = await axios.post("/api/register-user", formData);
-      toast.success("Successfully registered.");
+      const { data } = await axios.post("/api/user/register-user", formData);
+      toast.success("User registred Successfully");
       setloading(false);
       navigate("/login");
     } catch (error) {
