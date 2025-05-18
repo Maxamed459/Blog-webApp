@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import comparePassword from "../models/User.js";
 
 export const registerUser = async (req, res) => {
   try {
@@ -35,6 +36,18 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   try {
+    const { email, password } = req.body;
+
+    const isUserExists = await User.findOne({
+      email: email.toLowerCase(),
+    }).select("+password");
+
+    if (!isUserExists) {
+      return res.status(400).send("email is not found");
+    }
+
+    // password checking
+    const isPasswordCorrect = await isUserExists.comparePassword(password);
   } catch (error) {
     console.log("Error at loginUser", error);
     res.status(400).send(error.message);
